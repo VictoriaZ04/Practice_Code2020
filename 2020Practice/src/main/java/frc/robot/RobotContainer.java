@@ -19,10 +19,12 @@ import edu.wpi.first.wpilibj.XboxController.Button;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.MoveArm;
+import frc.robot.commands.MoveIntake;
 import frc.robot.commands.MoveWrist;
 import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Wrist;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -38,10 +40,16 @@ public class RobotContainer {
   private static SpeedController leftTop,leftBottom,rightTop,rightBottom;
   private static DifferentialDrive drive;
   private static SpeedControllerGroup left, right;
+
   private static SpeedController arm_motor;
   public static AnalogPotentiometer armpot;
+
   private static SpeedController wrist_motor;
   public static AnalogPotentiometer wristpot;
+
+  private static SpeedController intake_motor;
+
+
 
   // The robot's subsystems and commands are defined here...
 
@@ -57,10 +65,18 @@ public class RobotContainer {
 
     left = new SpeedControllerGroup(leftTop, leftBottom);
     right = new SpeedControllerGroup(rightTop, rightBottom);
-    drive = new DifferentialDrive(left, right)
+    drive = new DifferentialDrive(left, right);
 
     arm_motor = new WPI_VictorSPX(Constants.ARM_MOTOR_PORT);
     armpot = new AnalogPotentiometer(Constants.ARM_POT_PORT);
+    wrist_motor = new WPI_VictorSPX(Constants.WRIST_MOTOR_PORT);
+    wristpot = new AnalogPotentiometer(Constants.WRIST_POT_PORT);
+    
+    intake_motor = new WPI_VictorSPX(Constants.INTAKE_MOTOR_PORT);
+
+    
+  
+    
 
     // Configure the button bindings
     configureButtonBindings();
@@ -80,11 +96,15 @@ public class RobotContainer {
     JoystickButton armButton_Down = new JoystickButton(getJoy(), Constants.ARM_DOWN_BUTTON);
     JoystickButton wristButton_Up = new JoystickButton(getJoy(), Constants.WRIST_UP_BUTTON);
     JoystickButton wristButton_Down = new JoystickButton(getJoy(), Constants.WRIST_DOWN_BUTTON);
-    
+    JoystickButton intakeButton_In = new JoystickButton(getJoy(), Constants.INTAKE_IN_BUTTON);
+    JoystickButton intakeButton_Out = new JoystickButton(getJoy(), Constants.INTAKE_OUT_BUTTON);
+
     armButton_Up.whileHeld(new MoveArm(Constants.ARM_SPEED));
     armButton_Down.whileHeld(new MoveArm(-Constants.ARM_SPEED));
     wristButton_Up.whileHeld(new MoveWrist(Constants.WRIST_SPEED));
     wristButton_Down.whileHeld(new MoveWrist(-Constants.WRIST_SPEED));
+    intakeButton_In.whileHeld(new MoveIntake(Constants.INTAKE_SPEED_IN));
+    intakeButton_Out.whileHeld(new MoveIntake(-Constants.INTAKE_SPEED_OUT));
 
   }
 
@@ -101,5 +121,6 @@ public class RobotContainer {
   public static Joystick getJoy() {return joy;}
   public static Arm getArm() {return new Arm(arm_motor);}
   public static Wrist getWrist() {return new Wrist(wrist_motor);}
+  public static Intake getIntake() {return new Intake(intake_motor);}
 
 }

@@ -13,10 +13,10 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 /**
  * An example command that uses an example subsystem.
  */
-public class MoveWrist extends CommandBase {
+public class MoveIntake extends CommandBase {
     double speed;
 
-	public MoveWrist(double speed) {
+	public MoveIntake(double speed) {
         this.speed = speed;
   }
 
@@ -28,7 +28,7 @@ public class MoveWrist extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    RobotContainer.getWrist().move(speed);
+    RobotContainer.getIntake().move(speed);
   }
 
   // Called once the command ends or is interrupted.
