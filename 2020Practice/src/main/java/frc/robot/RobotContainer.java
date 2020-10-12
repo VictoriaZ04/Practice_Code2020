@@ -47,7 +47,8 @@ public class RobotContainer {
   private static SpeedController wrist_motor;
   public static AnalogPotentiometer wristpot;
 
-  private static SpeedController intake_motor;
+  private static SpeedController intake_motor_left;
+  private static SpeedController intake_motor_right;
 
 
 
@@ -72,7 +73,8 @@ public class RobotContainer {
     wrist_motor = new WPI_VictorSPX(Constants.WRIST_MOTOR_PORT);
     wristpot = new AnalogPotentiometer(Constants.WRIST_POT_PORT);
     
-    intake_motor = new WPI_VictorSPX(Constants.INTAKE_MOTOR_PORT);
+    intake_motor_left = new WPI_VictorSPX(Constants.INTAKE_MOTOR_LEFT_PORT);
+    intake_motor_right = new WPI_VictorSPX(Constants.INTAKE_MOTOR_RIGHT_PORT);
 
     
   
@@ -121,6 +123,6 @@ public class RobotContainer {
   public static Joystick getJoy() {return joy;}
   public static Arm getArm() {return new Arm(arm_motor);}
   public static Wrist getWrist() {return new Wrist(wrist_motor);}
-  public static Intake getIntake() {return new Intake(intake_motor);}
+  public static Intake getIntake() {return new Intake(intake_motor_left, intake_motor_right);}
 
 }
