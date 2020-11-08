@@ -12,6 +12,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.XboxController;
@@ -19,11 +20,14 @@ import edu.wpi.first.wpilibj.XboxController.Button;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.MoveArm;
+import frc.robot.commands.MoveHatch;
 import frc.robot.commands.MoveIntake;
 import frc.robot.commands.MoveWrist;
+import frc.robot.commands.auto.ForwardDrop;
 import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.subsystems.Hatch;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Wrist;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -50,7 +54,7 @@ public class RobotContainer {
   private static SpeedController intake_motor_left;
   private static SpeedController intake_motor_right;
 
-
+  private static Solenoid solenoid;
 
   // The robot's subsystems and commands are defined here...
 
@@ -59,10 +63,10 @@ public class RobotContainer {
    * The container for the robot. Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
-    leftTop = new WPI_VictorSPX(Constants.LEFT_TOP_MOTOR);
-    leftBottom = new WPI_VictorSPX(Constants.LEFT_BOTTOM_MOTOR);
-    rightTop = new WPI_VictorSPX(Constants.RIGHT_TOP_MOTOR);
-    rightBottom = new WPI_VictorSPX(Constants.RIGHT_BOTTOM_MOTOR);
+    leftTop = new SteelTalonsController(Constants.LEFT_TOP_MOTOR, false, 1);
+    leftBottom = new SteelTalonsController(Constants.LEFT_BOTTOM_MOTOR,false,1);
+    rightTop = new SteelTalonsController(Constants.RIGHT_TOP_MOTOR,false,1);
+    rightBottom = new SteelTalonsController(Constants.RIGHT_BOTTOM_MOTOR,false,1);
 
     left = new SpeedControllerGroup(leftTop, leftBottom);
     right = new SpeedControllerGroup(rightTop, rightBottom);
@@ -76,7 +80,7 @@ public class RobotContainer {
     intake_motor_left = new WPI_VictorSPX(Constants.INTAKE_MOTOR_LEFT_PORT);
     intake_motor_right = new WPI_VictorSPX(Constants.INTAKE_MOTOR_RIGHT_PORT);
 
-    
+    solenoid = new Solenoid(Constants.SOLENOID_PORT);
   
     
 
@@ -93,13 +97,13 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     //Joystick joy = new Joystick(0);
-    DriveTrain driveTrain = new DriveTrain(left, right, drive);
     JoystickButton armButton_Up = new JoystickButton(getJoy(), Constants.ARM_UP_BUTTON);
     JoystickButton armButton_Down = new JoystickButton(getJoy(), Constants.ARM_DOWN_BUTTON);
     JoystickButton wristButton_Up = new JoystickButton(getJoy(), Constants.WRIST_UP_BUTTON);
     JoystickButton wristButton_Down = new JoystickButton(getJoy(), Constants.WRIST_DOWN_BUTTON);
     JoystickButton intakeButton_In = new JoystickButton(getJoy(), Constants.INTAKE_IN_BUTTON);
     JoystickButton intakeButton_Out = new JoystickButton(getJoy(), Constants.INTAKE_OUT_BUTTON);
+    JoystickButton hatchButton = new JoystickButton(getJoy(), Constants.HATCH_BUTTON);
 
     armButton_Up.whileHeld(new MoveArm(Constants.ARM_SPEED));
     armButton_Down.whileHeld(new MoveArm(-Constants.ARM_SPEED));
@@ -107,6 +111,7 @@ public class RobotContainer {
     wristButton_Down.whileHeld(new MoveWrist(-Constants.WRIST_SPEED));
     intakeButton_In.whileHeld(new MoveIntake(Constants.INTAKE_SPEED_IN));
     intakeButton_Out.whileHeld(new MoveIntake(-Constants.INTAKE_SPEED_OUT));
+    hatchButton.whenPressed(new MoveHatch());
 
   }
 
@@ -116,13 +121,14 @@ public class RobotContainer {
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
-    // An ExampleCommand will run in autonomous
-    return m_autoCommand;
+    return new ForwardDrop();
   }
 
   public static Joystick getJoy() {return joy;}
   public static Arm getArm() {return new Arm(arm_motor);}
   public static Wrist getWrist() {return new Wrist(wrist_motor);}
   public static Intake getIntake() {return new Intake(intake_motor_left, intake_motor_right);}
+  public static Hatch getHatch() {return new Hatch(solenoid);}
+  public static DriveTrain geDriveTrain(){return new DriveTrain(left,right,drive);}
 
 }
