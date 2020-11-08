@@ -16,7 +16,7 @@ import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj.XboxController.Button;
+import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.MoveArm;
@@ -72,13 +72,13 @@ public class RobotContainer {
     right = new SpeedControllerGroup(rightTop, rightBottom);
     drive = new DifferentialDrive(left, right);
 
-    arm_motor = new WPI_VictorSPX(Constants.ARM_MOTOR_PORT);
+    arm_motor = new SteelTalonsController(Constants.ARM_MOTOR_PORT, false, 1);
     armpot = new AnalogPotentiometer(Constants.ARM_POT_PORT);
-    wrist_motor = new WPI_VictorSPX(Constants.WRIST_MOTOR_PORT);
+    wrist_motor = new SteelTalonsController(Constants.WRIST_MOTOR_PORT, false, 1);
     wristpot = new AnalogPotentiometer(Constants.WRIST_POT_PORT);
     
-    intake_motor_left = new WPI_VictorSPX(Constants.INTAKE_MOTOR_LEFT_PORT);
-    intake_motor_right = new WPI_VictorSPX(Constants.INTAKE_MOTOR_RIGHT_PORT);
+    intake_motor_left = new SteelTalonsController(Constants.INTAKE_MOTOR_LEFT_PORT, false, 1);
+    intake_motor_right = new SteelTalonsController(Constants.INTAKE_MOTOR_RIGHT_PORT, false, 1);
 
     solenoid = new Solenoid(Constants.SOLENOID_PORT);
   
@@ -97,13 +97,13 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     //Joystick joy = new Joystick(0);
-    JoystickButton armButton_Up = new JoystickButton(getJoy(), Constants.ARM_UP_BUTTON);
-    JoystickButton armButton_Down = new JoystickButton(getJoy(), Constants.ARM_DOWN_BUTTON);
-    JoystickButton wristButton_Up = new JoystickButton(getJoy(), Constants.WRIST_UP_BUTTON);
-    JoystickButton wristButton_Down = new JoystickButton(getJoy(), Constants.WRIST_DOWN_BUTTON);
-    JoystickButton intakeButton_In = new JoystickButton(getJoy(), Constants.INTAKE_IN_BUTTON);
-    JoystickButton intakeButton_Out = new JoystickButton(getJoy(), Constants.INTAKE_OUT_BUTTON);
-    JoystickButton hatchButton = new JoystickButton(getJoy(), Constants.HATCH_BUTTON);
+    Button armButton_Up = new JoystickButton(getJoy(), Constants.ARM_UP_BUTTON);
+    Button armButton_Down = new JoystickButton(getJoy(), Constants.ARM_DOWN_BUTTON);
+    Button wristButton_Up = new JoystickButton(getJoy(), Constants.WRIST_UP_BUTTON);
+    Button wristButton_Down = new JoystickButton(getJoy(), Constants.WRIST_DOWN_BUTTON);
+    Button intakeButton_In = new JoystickButton(getJoy(), Constants.INTAKE_IN_BUTTON);
+    Button intakeButton_Out = new JoystickButton(getJoy(), Constants.INTAKE_OUT_BUTTON);
+    Button hatchButton = new JoystickButton(getJoy(), Constants.HATCH_BUTTON);
 
     armButton_Up.whileHeld(new MoveArm(Constants.ARM_SPEED));
     armButton_Down.whileHeld(new MoveArm(-Constants.ARM_SPEED));
