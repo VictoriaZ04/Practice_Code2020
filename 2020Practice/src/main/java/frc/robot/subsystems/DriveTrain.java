@@ -20,9 +20,9 @@ public class DriveTrain extends SubsystemBase {
         drive.tankDrive(joy.getY() * .70, -joy.getZ() * 0.75);
     }
 
-    public void tankDrive(double left_speed, double right_speed){
-        driveLeft.set(left_speed);
-        driveRight.set(right_speed);
+    public void tankDrive(double left_speed, double right_speed,boolean leftReverse, boolean rightReverse){
+        driveLeft.set(left_speed, leftReverse);
+        driveRight.set(right_speed,rightReverse);
     }
 
     public void stopMotor(){

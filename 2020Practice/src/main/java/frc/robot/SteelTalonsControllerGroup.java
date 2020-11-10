@@ -2,12 +2,12 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.PWMVictorSPX;
 
-public class SteelTalonsController extends PWMVictorSPX
+public class SteelTalonsControllerGroup extends PWMVictorSPX
 {
     private final double bias;
     private boolean reverse;
 
-    public SteelTalonsController(final int channel, final boolean reverse, final double bias){
+    public SteelTalonsControllerGroup(final int channel, final boolean reverse, final double bias){
         super(channel);
         this.bias = bias;
         this.reverse = reverse;

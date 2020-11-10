@@ -41,18 +41,18 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
  */
 public class RobotContainer {
   static Joystick joy = new Joystick(0);
-  private static SpeedController leftTop,leftBottom,rightTop,rightBottom;
+  private static SteelTalonsController leftTop,leftBottom,rightTop,rightBottom;
   private static DifferentialDrive drive;
   private static SpeedControllerGroup left, right;
 
-  private static SpeedController arm_motor;
+  private static SteelTalonsController arm_motor;
   public static AnalogPotentiometer armpot;
 
-  private static SpeedController wrist_motor;
+  private static SteelTalonsController wrist_motor;
   public static AnalogPotentiometer wristpot;
 
-  private static SpeedController intake_motor_left;
-  private static SpeedController intake_motor_right;
+  private static SteelTalonsController intake_motor_left;
+  private static SteelTalonsController intake_motor_right;
 
   private static Solenoid solenoid;
 

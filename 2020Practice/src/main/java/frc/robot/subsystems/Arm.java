@@ -11,15 +11,16 @@ import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
+import frc.robot.SteelTalonsController;
 
 public class Arm extends SubsystemBase {
-  public SpeedController arm;
+  public SteelTalonsController arm;
 
-  public Arm(SpeedController arm) {
+  public Arm(SteelTalonsController arm) {
     this.arm = arm;
   }
 
-  public void move(double speed) {
+  public void move(double speed,boolean reverse) {
     if (RobotContainer.armpot.get() >= Constants.ARM_UPPER_LIMIT || RobotContainer.armpot.get() <= Constants.ARM_LOWER_LIMIT) {
       arm.set(speed);
     }

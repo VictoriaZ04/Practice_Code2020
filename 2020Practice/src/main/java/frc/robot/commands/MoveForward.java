@@ -19,7 +19,7 @@ public class MoveForward extends CommandBase
         RobotContainer.geDriveTrain().tankDrive(.5, .5);
     }
 
-    public void end()
+    public void end(boolean interrupted)
     {
         RobotContainer.geDriveTrain().stopMotor();
     }

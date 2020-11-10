@@ -7,6 +7,7 @@
 
 package frc.robot.commands;
 
+import frc.robot.Constants;
 import frc.robot.RobotContainer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
@@ -15,9 +16,10 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
  */
 public class MoveArm extends CommandBase {
     double speed;
-
-	public MoveArm(double speed) {
+    boolean reverse;
+	public MoveArm(double speed, boolean reverse) {
         this.speed = speed;
+        this.reverse = reverse;
   }
 
   // Called when the command is initially scheduled.
@@ -28,7 +30,7 @@ public class MoveArm extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    RobotContainer.getArm().move(speed);
+    RobotContainer.getArm().move(speed,reverse);
   }
 
   // Called once the command ends or is interrupted.

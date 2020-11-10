@@ -15,9 +15,11 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
  */
 public class MoveIntake extends CommandBase {
     double speed;
+    boolean reverse;
 
-	public MoveIntake(double speed) {
+	public MoveIntake(double speed,boolean reverse) {
         this.speed = speed;
+        this.reverse = reverse;
   }
 
   // Called when the command is initially scheduled.
@@ -28,7 +30,7 @@ public class MoveIntake extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    RobotContainer.getIntake().move(speed);
+    RobotContainer.getIntake().move(speed, reverse);
   }
 
   // Called once the command ends or is interrupted.
