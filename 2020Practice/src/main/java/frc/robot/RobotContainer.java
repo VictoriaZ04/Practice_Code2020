@@ -41,7 +41,7 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
  */
 public class RobotContainer {
   static Joystick joy = new Joystick(0);
-  private static SteelTalonsController leftTop,leftBottom,rightTop,rightBottom;
+  private static SteelTalonsController leftTop,leftBottom,rightTop,rightBottom; //SpeedController
   private static DifferentialDrive drive;
   private static SpeedControllerGroup left, right;
 
@@ -72,15 +72,26 @@ public class RobotContainer {
     right = new SpeedControllerGroup(rightTop, rightBottom);
     drive = new DifferentialDrive(left, right);
 
+    //initialize drive train
+
     arm_motor = new SteelTalonsController(Constants.ARM_MOTOR_PORT, false, 1);
     armpot = new AnalogPotentiometer(Constants.ARM_POT_PORT);
+
+    //initialize arm 
+
     wrist_motor = new SteelTalonsController(Constants.WRIST_MOTOR_PORT, false, 1);
     wristpot = new AnalogPotentiometer(Constants.WRIST_POT_PORT);
+
+    //initialize wrist
     
     intake_motor_left = new SteelTalonsController(Constants.INTAKE_MOTOR_LEFT_PORT, false, 1);
     intake_motor_right = new SteelTalonsController(Constants.INTAKE_MOTOR_RIGHT_PORT, false, 1);
 
+    //initalize wrist
+
     solenoid = new Solenoid(Constants.SOLENOID_PORT);
+
+    //initalize hatch
   
     
 
@@ -110,7 +121,7 @@ public class RobotContainer {
     wristButton_Up.whileHeld(new MoveWrist(Constants.WRIST_SPEED));
     wristButton_Down.whileHeld(new MoveWrist(-Constants.WRIST_SPEED));
     intakeButton_In.whileHeld(new MoveIntake(Constants.INTAKE_SPEED_IN));
-    intakeButton_Out.whileHeld(new MoveIntake(-Constants.INTAKE_SPEED_OUT));
+    intakeButton_Out.whileHeld(new MoveIntake(-Constants.INTAKE_SPEED_OUT));//add boolean parameters
     hatchButton.whenPressed(new MoveHatch());
 
   }

@@ -6,7 +6,7 @@ import frc.robot.Constants;
 import frc.robot.RobotContainer;
 import frc.robot.commands.MoveForward;
 
-public class ForwardDrop extends CommandBase
+public class ForwardDrop extends CommandBase //do a CommandGroup
 {
     double startTime = Timer.getFPGATimestamp();
     double time = 10;

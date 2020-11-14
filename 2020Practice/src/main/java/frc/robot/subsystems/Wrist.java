@@ -19,8 +19,9 @@ public class Wrist extends SubsystemBase {
   }
 
   public void move(double speed, boolean reverse){
+    //check based on if reverse true or false
     if(RobotContainer.wristpot.get() <= Constants.WRIST_UPPER_LIMIT || RobotContainer.wristpot.get() >= Constants.WRIST_LOWER_LIMIT){
-        wrist.set(speed,reverse);
+        wrist.set(speed,reverse);//switch these
     }
     else{
         wrist.set(0);
@@ -34,6 +35,7 @@ public class Wrist extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+    //check limits here too
   }
   
 

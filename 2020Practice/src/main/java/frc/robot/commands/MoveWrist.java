@@ -43,5 +43,6 @@ public class MoveWrist extends CommandBase {
   @Override
   public boolean isFinished() {
     return false;
+    //returns if button no longer pressed OR if you are at the limit (based on reverse)
   }
 }

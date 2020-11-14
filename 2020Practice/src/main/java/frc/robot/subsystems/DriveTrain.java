@@ -14,6 +14,7 @@ public class DriveTrain extends SubsystemBase {
     public DriveTrain(SpeedControllerGroup drive_Left, SpeedControllerGroup drive_Right, DifferentialDrive drive){
         this.driveLeft = drive_Left;
         this.driveRight = drive_Right;
+        //where's your drive base
     }
 
     public void joystick(Joystick joy){

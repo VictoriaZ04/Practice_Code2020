@@ -43,5 +43,6 @@ public class MoveIntake extends CommandBase {
   @Override
   public boolean isFinished() {
     return false;
+    //returns if button no longer pressed 
   }
 }

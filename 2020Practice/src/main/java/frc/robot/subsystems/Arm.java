@@ -22,7 +22,7 @@ public class Arm extends SubsystemBase {
 
   public void move(double speed,boolean reverse) {
     if (RobotContainer.armpot.get() >= Constants.ARM_UPPER_LIMIT || RobotContainer.armpot.get() <= Constants.ARM_LOWER_LIMIT) {
-      arm.set(speed);
+      arm.set(speed);//switch these
     }
     else{
       arm.set(0);
@@ -36,6 +36,7 @@ public class Arm extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+    //always check for limits here 
   }
   
 
