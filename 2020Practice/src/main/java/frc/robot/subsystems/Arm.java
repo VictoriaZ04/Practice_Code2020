@@ -16,16 +16,18 @@ import frc.robot.SteelTalonsController;
 public class Arm extends SubsystemBase {
   public SteelTalonsController arm;
 
-  public Arm(SteelTalonsController arm) {
-    this.arm = arm;
+  public Arm(SteelTalonsController arm_motor) {
+    this.arm = arm_motor;
   }
 
-  public void move(double speed,boolean reverse) {
+
+
+public void move(double speed,boolean reverse) {
     if (RobotContainer.armpot.get() >= Constants.ARM_UPPER_LIMIT || RobotContainer.armpot.get() <= Constants.ARM_LOWER_LIMIT) {
-      arm.set(speed);//switch these
+      arm.set(0);//switch these
     }
     else{
-      arm.set(0);
+      arm.set(speed);
     }
   }
 
@@ -35,8 +37,9 @@ public class Arm extends SubsystemBase {
 
   @Override
   public void periodic() {
-    // This method will be called once per scheduler run
-    //always check for limits here 
+    if (RobotContainer.armpot.get() >= Constants.ARM_UPPER_LIMIT || RobotContainer.armpot.get() <= Constants.ARM_LOWER_LIMIT) {
+      arm.set(0);//switch these
+    }
   }
   
 

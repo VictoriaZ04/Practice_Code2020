@@ -4,20 +4,21 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.SteelTalonsControllerGroup;
 
 public class DriveTrain extends SubsystemBase {
     
-    SpeedControllerGroup driveLeft;
-    SpeedControllerGroup driveRight;
+    SteelTalonsControllerGroup driveLeft;
+    SteelTalonsControllerGroup driveRight;
     DifferentialDrive drive;
 
-    public DriveTrain(SpeedControllerGroup drive_Left, SpeedControllerGroup drive_Right, DifferentialDrive drive){
-        this.driveLeft = drive_Left;
-        this.driveRight = drive_Right;
+    public DriveTrain(SteelTalonsControllerGroup left, SteelTalonsControllerGroup right, DifferentialDrive drive){
+        this.driveLeft = left;
+        this.driveRight = right;
         //where's your drive base
     }
 
-    public void joystick(Joystick joy){
+	public void joystick(Joystick joy){
         drive.tankDrive(joy.getY() * .70, -joy.getZ() * 0.75);
     }
 

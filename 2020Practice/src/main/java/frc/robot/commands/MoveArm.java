@@ -42,7 +42,7 @@ public class MoveArm extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return RobotContainer.getJoy().getRawButtonPressed(Constants.ARM_DOWN_BUTTON);
+    return RobotContainer.getJoy().getRawButtonPressed(Constants.ARM_DOWN_BUTTON) == false;
     //returns if button no longer pressed OR if you are at the limit (based on reverse)
   }
 }

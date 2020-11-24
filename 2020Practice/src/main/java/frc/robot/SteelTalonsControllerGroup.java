@@ -1,27 +1,26 @@
 package frc.robot;
 
-import edu.wpi.first.wpilibj.PWMVictorSPX;
+import edu.wpi.first.wpilibj.SpeedController;
+import edu.wpi.first.wpilibj.SpeedControllerGroup;
 
-public class SteelTalonsControllerGroup extends PWMVictorSPX
-{
-    private final double bias;
+public class SteelTalonsControllerGroup extends SpeedControllerGroup {
+
+    private double offset;
     private boolean reverse;
 
-    public SteelTalonsControllerGroup(final int channel, final boolean reverse, final double bias){
-        super(channel);
-        this.bias = bias;
+    public SteelTalonsControllerGroup(double offset, boolean reverse, SpeedController speedController, SpeedController speedControllers) {
+        super(speedController, speedControllers);
+        this.offset = offset;
         this.reverse = reverse;
-        setInverted(reverse);
     }
 
-    public void set(final double speed, boolean reverse)
-    {        
+    public void set(double speed, boolean reverse)
+    {
         if(reverse)
             setInverted(!this.reverse);
         else
             setInverted(this.reverse);
-        super.set(speed * bias);
-        
+        super.set(speed + offset);
     }
 
 }

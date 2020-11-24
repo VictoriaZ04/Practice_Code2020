@@ -43,7 +43,7 @@ public class RobotContainer {
   static Joystick joy = new Joystick(0);
   private static SteelTalonsController leftTop,leftBottom,rightTop,rightBottom; //SpeedController
   private static DifferentialDrive drive;
-  private static SpeedControllerGroup left, right;
+  private static SteelTalonsControllerGroup left, right;
 
   private static SteelTalonsController arm_motor;
   public static AnalogPotentiometer armpot;
@@ -56,6 +56,11 @@ public class RobotContainer {
 
   private static Solenoid solenoid;
 
+  private static DriveTrain driveTrain;
+  private static Arm arm;
+  private static Wrist wrist;
+  private static Hatch hatch;
+  private static Intake intake;
   // The robot's subsystems and commands are defined here...
 
 
@@ -68,8 +73,8 @@ public class RobotContainer {
     rightTop = new SteelTalonsController(Constants.RIGHT_TOP_MOTOR,false,1);
     rightBottom = new SteelTalonsController(Constants.RIGHT_BOTTOM_MOTOR,false,1);
 
-    left = new SpeedControllerGroup(leftTop, leftBottom);
-    right = new SpeedControllerGroup(rightTop, rightBottom);
+    left = new SteelTalonsControllerGroup(0,false,leftTop, leftBottom);
+    right = new SteelTalonsControllerGroup(0,false,rightTop, rightBottom);
     drive = new DifferentialDrive(left, right);
 
     //initialize drive train
@@ -92,7 +97,11 @@ public class RobotContainer {
     solenoid = new Solenoid(Constants.SOLENOID_PORT);
 
     //initalize hatch
-  
+    driveTrain = new DriveTrain(left, right, drive);
+    arm = new Arm(arm_motor);
+    wrist = new Wrist(wrist_motor);
+    hatch = new Hatch(solenoid);
+    intake = new Intake(intake_motor_left, intake_motor_right);
     
 
     // Configure the button bindings
@@ -116,12 +125,12 @@ public class RobotContainer {
     Button intakeButton_Out = new JoystickButton(getJoy(), Constants.INTAKE_OUT_BUTTON);
     Button hatchButton = new JoystickButton(getJoy(), Constants.HATCH_BUTTON);
 
-    armButton_Up.whileHeld(new MoveArm(Constants.ARM_SPEED));
-    armButton_Down.whileHeld(new MoveArm(-Constants.ARM_SPEED));
-    wristButton_Up.whileHeld(new MoveWrist(Constants.WRIST_SPEED));
-    wristButton_Down.whileHeld(new MoveWrist(-Constants.WRIST_SPEED));
-    intakeButton_In.whileHeld(new MoveIntake(Constants.INTAKE_SPEED_IN));
-    intakeButton_Out.whileHeld(new MoveIntake(-Constants.INTAKE_SPEED_OUT));//add boolean parameters
+    armButton_Up.whileHeld(new MoveArm(Constants.ARM_SPEED,false));
+    armButton_Down.whileHeld(new MoveArm(-Constants.ARM_SPEED,true));
+    wristButton_Up.whileHeld(new MoveWrist(Constants.WRIST_SPEED,false));
+    wristButton_Down.whileHeld(new MoveWrist(-Constants.WRIST_SPEED,true));
+    intakeButton_In.whileHeld(new MoveIntake(Constants.INTAKE_SPEED_IN,true));
+    intakeButton_Out.whileHeld(new MoveIntake(-Constants.INTAKE_SPEED_OUT,false));//add boolean parameters
     hatchButton.whenPressed(new MoveHatch());
 
   }
@@ -136,10 +145,10 @@ public class RobotContainer {
   }
 
   public static Joystick getJoy() {return joy;}
-  public static Arm getArm() {return new Arm(arm_motor);}
-  public static Wrist getWrist() {return new Wrist(wrist_motor);}
-  public static Intake getIntake() {return new Intake(intake_motor_left, intake_motor_right);}
-  public static Hatch getHatch() {return new Hatch(solenoid);}
-  public static DriveTrain geDriveTrain(){return new DriveTrain(left,right,drive);}
+  public static Arm getArm() {return arm;}
+  public static Wrist getWrist() {return wrist;}
+  public static Intake getIntake() {return intake;}
+  public static Hatch getHatch() {return hatch;}
+  public static DriveTrain geDriveTrain(){return driveTrain;}
 
 }

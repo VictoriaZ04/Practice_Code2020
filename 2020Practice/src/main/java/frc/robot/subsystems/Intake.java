@@ -7,6 +7,7 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.SteelTalonsController;
 
@@ -15,9 +16,9 @@ public class Intake extends SubsystemBase {
   public SteelTalonsController intake_right;
 
 
-  public Intake(SteelTalonsController intake_left, SteelTalonsController intake_right) {
-    this.intake_left = intake_left;
-    this.intake_right = intake_right;
+  public Intake(SteelTalonsController intake_motor_left, SteelTalonsController intake_motor_right) {
+    this.intake_left = intake_motor_left;
+    this.intake_right = intake_motor_right;
 
   }
 

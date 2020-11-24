@@ -20,7 +20,7 @@ public class ForwardDrop extends CommandBase //do a CommandGroup
         new MoveForward(5.0);
         if(Timer.getFPGATimestamp() > startTime + 5 && !intake)
         {
-            RobotContainer.getIntake().move(Constants.INTAKE_SPEED_OUT);
+            RobotContainer.getIntake().move(Constants.INTAKE_SPEED_OUT,true);
         }
     }
 

@@ -7,24 +7,26 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
 import frc.robot.SteelTalonsController;
 
 public class Wrist extends SubsystemBase {
-    SteelTalonsController wrist;
-    public Wrist(SteelTalonsController wrist) {
-      this.wrist = wrist;
+  SteelTalonsController wrist;
+
+    public Wrist(SteelTalonsController wrist_motor) {
+      this.wrist = wrist_motor;
   }
 
   public void move(double speed, boolean reverse){
     //check based on if reverse true or false
     if(RobotContainer.wristpot.get() <= Constants.WRIST_UPPER_LIMIT || RobotContainer.wristpot.get() >= Constants.WRIST_LOWER_LIMIT){
-        wrist.set(speed,reverse);//switch these
+        wrist.set(0);//switch these
     }
     else{
-        wrist.set(0);
+        wrist.set(speed,reverse);
     }
   }
 
