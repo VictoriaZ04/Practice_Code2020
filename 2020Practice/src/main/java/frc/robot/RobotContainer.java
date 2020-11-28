@@ -41,7 +41,7 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
  */
 public class RobotContainer {
   static Joystick joy = new Joystick(0);
-  private static SteelTalonsController leftTop,leftBottom,rightTop,rightBottom; //SpeedController
+  private static SpeedController leftTop,leftBottom,rightTop,rightBottom; //SpeedController
   private static DifferentialDrive drive;
   private static SteelTalonsControllerGroup left, right;
 

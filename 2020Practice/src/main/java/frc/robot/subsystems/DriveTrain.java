@@ -8,11 +8,11 @@ import frc.robot.SteelTalonsControllerGroup;
 
 public class DriveTrain extends SubsystemBase {
     
-    SteelTalonsControllerGroup driveLeft;
-    SteelTalonsControllerGroup driveRight;
+    SpeedControllerGroup driveLeft;
+    SpeedControllerGroup driveRight;
     DifferentialDrive drive;
 
-    public DriveTrain(SteelTalonsControllerGroup left, SteelTalonsControllerGroup right, DifferentialDrive drive){
+    public DriveTrain(SpeedControllerGroup left, SpeedControllerGroup right, DifferentialDrive drive){
         this.driveLeft = left;
         this.driveRight = right;
         //where's your drive base
@@ -23,8 +23,8 @@ public class DriveTrain extends SubsystemBase {
     }
 
     public void tankDrive(double left_speed, double right_speed,boolean leftReverse, boolean rightReverse){
-        driveLeft.set(left_speed, leftReverse);
-        driveRight.set(right_speed,rightReverse);
+        driveLeft.set(left_speed);
+        driveRight.set(right_speed);
     }
 
     public void stopMotor(){
