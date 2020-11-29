@@ -43,7 +43,7 @@ public class RobotContainer {
   static Joystick joy = new Joystick(0);
   private static SpeedController leftTop,leftBottom,rightTop,rightBottom; //SpeedController
   private static DifferentialDrive drive;
-  private static SteelTalonsControllerGroup left, right;
+  private static SpeedControllerGroup left, right;
 
   private static SteelTalonsController arm_motor;
   public static AnalogPotentiometer armpot;
@@ -73,8 +73,8 @@ public class RobotContainer {
     rightTop = new SteelTalonsController(Constants.RIGHT_TOP_MOTOR,false,1);
     rightBottom = new SteelTalonsController(Constants.RIGHT_BOTTOM_MOTOR,false,1);
 
-    left = new SteelTalonsControllerGroup(0,false,leftTop, leftBottom);
-    right = new SteelTalonsControllerGroup(0,false,rightTop, rightBottom);
+    left = new SpeedControllerGroup(leftTop, leftBottom);
+    right = new SpeedControllerGroup(rightTop, rightBottom);
     drive = new DifferentialDrive(left, right);
 
     //initialize drive train

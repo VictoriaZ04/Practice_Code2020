@@ -14,12 +14,9 @@ public class SteelTalonsController extends PWMVictorSPX
         setInverted(reverse);
     }
 
-    public void set(final double speed, boolean reverse)
+    public void set(final double speed)
     {        
-        if(reverse)
-            setInverted(!this.reverse);
-        else
-            setInverted(this.reverse);
+
         super.set(speed * bias);
         
     }
