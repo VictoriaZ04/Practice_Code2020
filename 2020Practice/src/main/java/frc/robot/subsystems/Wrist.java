@@ -35,8 +35,7 @@ public class Wrist extends SubsystemBase {
 
   @Override
   public void periodic() {
-    // This method will be called once per scheduler run
-    //check limits here too
+    //check limits here too!!!!!!!
   }
   
 

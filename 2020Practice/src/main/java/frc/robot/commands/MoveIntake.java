@@ -42,6 +42,7 @@ public class MoveIntake extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
+    //kind of correct. you should do this based on if the speed is positive or negative, check for the respective button
     return RobotContainer.getJoy().getRawButtonPressed(Constants.INTAKE_IN_BUTTON) == false && RobotContainer.getJoy().getRawButtonPressed(Constants.INTAKE_OUT_BUTTON) == false;
     //returns if button no longer pressed 
   }
