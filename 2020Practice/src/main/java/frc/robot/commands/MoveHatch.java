@@ -8,12 +8,14 @@ public class MoveHatch extends CommandBase
     public MoveHatch()
     {}
 
+    @Override
     public void execute()
     {
         up = !up;
         RobotContainer.getHatch().moveHatch(up);
     }
     
+    @Override
     public boolean isFinished()
     {
         return true;

@@ -17,8 +17,6 @@ public class DriveTrain extends SubsystemBase {
         this.drive = drive;
     }
 
-
-
 	public void joystick(Joystick joy){
         drive.tankDrive(joy.getY() * .70, -joy.getZ() * 0.75);
     }

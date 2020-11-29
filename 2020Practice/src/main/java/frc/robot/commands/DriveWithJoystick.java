@@ -11,12 +11,20 @@ public class DriveWithJoystick extends CommandBase
 
     }
 
+    @Override
+    public void initialize()
+    {
+        RobotContainer.geDriveTrain().joystick(RobotContainer.getJoy());
+    }
+    
+    @Override
     public void execute()
     {
         RobotContainer.geDriveTrain().joystick(RobotContainer.getJoy());
     }
     
-    public void end()
+    @Override
+    public void end(boolean interupted)
     {
         RobotContainer.geDriveTrain().stopMotor();
     }

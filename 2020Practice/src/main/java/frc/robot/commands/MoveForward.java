@@ -14,16 +14,19 @@ public class MoveForward extends CommandBase
         this.time = time;
     }
     
+    @Override
     public void execute()
     {
         RobotContainer.geDriveTrain().tankDrive(.5, .5);//add booleans here
     }
 
+    @Override
     public void end(boolean interrupted)
     {
         RobotContainer.geDriveTrain().stopMotor();
     }
 
+    @Override
     public boolean isFinished()
     {
         return Timer.getFPGATimestamp() > (startTime + time);
