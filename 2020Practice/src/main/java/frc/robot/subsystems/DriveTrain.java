@@ -14,14 +14,16 @@ public class DriveTrain extends SubsystemBase {
     public DriveTrain(SpeedControllerGroup left, SpeedControllerGroup right, DifferentialDrive drive){
         this.driveLeft = left;
         this.driveRight = right;
-        //where's your drive base
+        this.drive = drive;
     }
+
+
 
 	public void joystick(Joystick joy){
         drive.tankDrive(joy.getY() * .70, -joy.getZ() * 0.75);
     }
 
-    public void tankDrive(double left_speed, double right_speed,boolean leftReverse, boolean rightReverse){
+    public void tankDrive(double left_speed, double right_speed){
         driveLeft.set(left_speed);
         driveRight.set(right_speed);
     }

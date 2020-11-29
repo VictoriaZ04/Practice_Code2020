@@ -125,12 +125,12 @@ public class RobotContainer {
     Button intakeButton_Out = new JoystickButton(getJoy(), Constants.INTAKE_OUT_BUTTON);
     Button hatchButton = new JoystickButton(getJoy(), Constants.HATCH_BUTTON);
 
-    armButton_Up.whileHeld(new MoveArm(Constants.ARM_SPEED,false));
-    armButton_Down.whileHeld(new MoveArm(-Constants.ARM_SPEED,true));
-    wristButton_Up.whileHeld(new MoveWrist(Constants.WRIST_SPEED,false));
-    wristButton_Down.whileHeld(new MoveWrist(-Constants.WRIST_SPEED,true));
-    intakeButton_In.whileHeld(new MoveIntake(Constants.INTAKE_SPEED_IN,true));
-    intakeButton_Out.whileHeld(new MoveIntake(-Constants.INTAKE_SPEED_OUT,false));//add boolean parameters
+    armButton_Up.whileHeld(new MoveArm(Constants.ARM_SPEED));
+    armButton_Down.whileHeld(new MoveArm(-Constants.ARM_SPEED));
+    wristButton_Up.whileHeld(new MoveWrist(Constants.WRIST_SPEED));
+    wristButton_Down.whileHeld(new MoveWrist(-Constants.WRIST_SPEED));
+    intakeButton_In.whileHeld(new MoveIntake(Constants.INTAKE_SPEED_IN));
+    intakeButton_Out.whileHeld(new MoveIntake(-Constants.INTAKE_SPEED_OUT));//add boolean parameters
     hatchButton.whenPressed(new MoveHatch());
 
   }

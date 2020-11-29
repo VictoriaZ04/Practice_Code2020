@@ -16,7 +16,7 @@ public class MoveForward extends CommandBase
     
     public void execute()
     {
-        RobotContainer.geDriveTrain().tankDrive(.5, .5,false,false);//add booleans here
+        RobotContainer.geDriveTrain().tankDrive(.5, .5);//add booleans here
     }
 
     public void end(boolean interrupted)

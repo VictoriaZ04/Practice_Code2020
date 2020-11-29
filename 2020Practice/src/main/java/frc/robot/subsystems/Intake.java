@@ -22,9 +22,9 @@ public class Intake extends SubsystemBase {
 
   }
 
-  public void move(double speed, boolean reverse) {
-      intake_left.set(speed,reverse);
-      intake_right.set(speed,!reverse);
+  public void move(double speed ) {
+      intake_left.set(speed);
+      intake_right.set(speed);
   }
 
   public void stopMotor(){

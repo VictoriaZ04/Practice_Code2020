@@ -7,7 +7,6 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
@@ -20,13 +19,13 @@ public class Wrist extends SubsystemBase {
       this.wrist = wrist_motor;
   }
 
-  public void move(double speed, boolean reverse){
+  public void move(double speed){
     //check based on if reverse true or false
     if(RobotContainer.wristpot.get() <= Constants.WRIST_UPPER_LIMIT || RobotContainer.wristpot.get() >= Constants.WRIST_LOWER_LIMIT){
         wrist.set(0);//switch these
     }
     else{
-        wrist.set(speed,reverse);
+        wrist.set(speed);
     }
   }
 

@@ -22,7 +22,7 @@ public class Arm extends SubsystemBase {
 
 
 
-public void move(double speed,boolean reverse) {
+public void move(double speed) {
     if (RobotContainer.armpot.get() >= Constants.ARM_UPPER_LIMIT || RobotContainer.armpot.get() <= Constants.ARM_LOWER_LIMIT) {
       arm.set(0);//switch these
     }

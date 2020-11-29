@@ -16,11 +16,9 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
  */
 public class MoveWrist extends CommandBase {
     double speed;
-    boolean reverse;
 
-	public MoveWrist(double speed,boolean reverse) {
+	public MoveWrist(double speed) {
     this.speed = speed;
-        this.reverse = reverse;
   }
 
   // Called when the command is initially scheduled.
@@ -31,7 +29,7 @@ public class MoveWrist extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    RobotContainer.getWrist().move(speed,reverse);
+    RobotContainer.getWrist().move(speed);
   }
 
   // Called once the command ends or is interrupted.
